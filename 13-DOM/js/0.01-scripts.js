@@ -13,3 +13,4 @@
 // todo el documento HTML es el dom/ son todos los elementos de la pagina web, tanto etiquetas como atributos. 
 // con el dom podemos selecc    ionar un h1 por ejemplo y podemos editar su Texto.
 
+// no se como se llama
