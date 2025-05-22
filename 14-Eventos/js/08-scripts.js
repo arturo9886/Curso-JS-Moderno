@@ -14,6 +14,9 @@ const parrafo3 = document.createElement('p');
 parrafo3.textContent = '$800 por persona';
 parrafo3.classList.add('precio');
 
+//en caso de querer darle parametros la sintaxis cambia, ejemplo. 
+parrafo3.onclick = nuevaFuncion(1);
+
 // crear el div...
 const info = document.createElement('div');
 info.classList.add('info');
@@ -38,3 +41,9 @@ contenedorCard.appendChild(info);
 // Insertarlo en el HTML...
 const contenedor = document.querySelector('.hacer .contenedor-cards');
 contenedor.appendChild(contenedorCard); // al inicio info
+
+
+function nuevaFuncion(id){
+    console.log('Desde nueva Funcion', id);
+}
+
