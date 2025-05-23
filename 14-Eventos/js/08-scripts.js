@@ -15,7 +15,9 @@ parrafo3.textContent = '$800 por persona';
 parrafo3.classList.add('precio');
 
 //en caso de querer darle parametros la sintaxis cambia, ejemplo. 
-parrafo3.onclick = nuevaFuncion(1);
+parrafo3.onclick = ()=>{
+    nuevaFuncion(1)
+}
 
 // crear el div...
 const info = document.createElement('div');
