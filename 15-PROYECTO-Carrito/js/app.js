@@ -16,7 +16,37 @@ cargarEventListeners();
 function cargarEventListeners(){
     //cuando agregas un curso cuando presionas agregar.
     listaCursos.addEventListener('click', agregarCurso)
+
+    //eliminar cursos del carrito.
+    carrito.addEventListener('click',eliminarCurso )
+
+    //vaciar el carrito
+
+    vaciarCarritoBtn.addEventListener('click',()=>{
+        articulosCarrito = [];
+    })
+
+    limpiarHTML(); // Eliminamos todo el HTML.
+
 }
+
+//Eliminar un curso del carrito. 
+
+function eliminarCurso(e){
+    console.log(e.target.classList)
+    if(e.target.classList.contains('borrar-curso')){
+        const cursoId = e.target.getAttribute('data-id');
+
+        //eliminar del arreglo de articulosCarrito por el data id. 
+
+        articulosCarrito = articulosCarrito.filter(curso => curso.id!==cursoId);
+        console.log(articulosCarrito)
+    }
+
+    carritoHTML(); //iterar sobre el carrito. Mostrar su html.
+
+}
+
 
 //fucniones. 
 //es bueno agrupar tus variables arriba y tus funciones abajo. 
@@ -49,10 +79,45 @@ function leerDatosCurso(curso){ // curso dentro del parentecis es un parametro d
         cantidad: 1,                                            // SIGUIENTE
     }
 
-    //agregar elementos a la variable de carrito. osea el arreglo.
+    
+    //Lo que vamos a hacer ahora es hace que en case de agregar el mismo curso, simpelement se agregue una cantidad.
 
+    //revisar si un elemento ya existe en el carrito. 
+    //Utilizaremos el metodo .SUM, este nos permite iterar sobre un arreglo de objetos y confirmar si un 
+    //elemento existe en el. 
+
+    const existe = articulosCarrito.some( curso=> curso.id === infoCurso.id);
+    console.log(existe);
+
+   if(existe){
+    //Actualizamos la cantidad
+    const cursos = articulosCarrito.map(curso =>{
+        if(curso.id===infoCurso.id){ // si el curso actual del carrito, es igual al curso que queremos agregar, la cantidad sube. 
+            curso.cantidad ++;
+            return curso; // retorna el objeto actualizado 
+        }else{
+            return curso;  // retorna los objetos que no estan duplicados. pero son iportates.
+        }
+    })
+
+    /*con retornar el curso significa que iteraremos con el map, cuando encontremos el duplciado incrementaremos
+    y lo que hacemos es incrementar el valor al uno y retornamos para que se le asigne ese valor actualizado
+    al arreglo.
+
+    cuando itinere sobre un curso que no esta duplicado simpelmente retornaremos el objeto no duplicado.
+    */
+
+    articulosCarrito = [...cursos]
+
+   }else{
+    //Agregamos el curso al carrito. 
     articulosCarrito = [...articulosCarrito, infoCurso]
+   }
+    // si tenemos dos elementos iguales, el codivo va a iterar y si uno es igual no dira que ya esta en el carrito. 
+    //simplemente actualizaremos la cantidad. 
 
+
+    //agregar elementos a la variable de carrito. osea el arreglo.
     console.log(articulosCarrito);
 
     carritoHTML();
