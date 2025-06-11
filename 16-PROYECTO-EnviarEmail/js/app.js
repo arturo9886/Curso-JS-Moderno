@@ -13,6 +13,7 @@ document.addEventListener ('DOMContentLoaded', function(){ // el vento que tiene
     const inputEmail = document.querySelector('#email');
     const inputAsunto = document.querySelector('#asunto');
     const inputMensaje = document.querySelector('#mensaje');
+    const inputCC= document.querySelector('#CC')
     const formulario = document.querySelector('#formulario');
     const btnSubmit = document.querySelector('#formulario button[type="submit"]')
     const btnReset = document.querySelector('#formulario button[type="reset"]')
@@ -26,6 +27,8 @@ document.addEventListener ('DOMContentLoaded', function(){ // el vento que tiene
     // ahora lo que haremos es agregar un eventListener a los query selector que tenemos. 
 
     inputEmail.addEventListener('input',validar)
+
+    inputCC.addEventListener('input',ValidarCC);
 
     inputAsunto.addEventListener('input',validar)
 
@@ -75,12 +78,13 @@ document.addEventListener ('DOMContentLoaded', function(){ // el vento que tiene
             return;
         }
 
-        if (e.target.id === 'email' && !validarEmail(e.target.value)){
+        if (e.target.id ===  'email' && !validarEmail(e.target.value)){
             mostrarAlerta('El email no es valido', e.target.parentElement)
             email[e.target.name] = ''
             comprobarEmail();
             return;
         };
+
 
         limpiarAlerta(e.target.parentElement);
 
@@ -93,6 +97,27 @@ document.addEventListener ('DOMContentLoaded', function(){ // el vento que tiene
         comprobarEmail()
 
     }
+
+    function ValidarCC(e){
+
+        const valor = e.target.value.trim()
+
+        if( valor === ''){
+            limpiarAlerta(e.target.parentElement)
+            return;
+        }
+
+        if(!validarEmail(valor)){
+            mostrarAlerta('El Email no es valido', e.target.parentElement);
+            return;
+        }
+
+        limpiarAlerta(e.target.parentElement);
+
+    }
+
+
+    
 
     function mostrarAlerta(mensaje, referencia){
         limpiarAlerta(referencia)
@@ -115,9 +140,10 @@ document.addEventListener ('DOMContentLoaded', function(){ // el vento que tiene
         }
     }
 
-    function validarEmail(email){
+    function validarEmail(email , CC){
         const regex =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/  //esto es una expresion regular.
-        const resultado = regex.test(email)
+        const resultado = regex.test(email);
+        const resultado2 = regex.test(CC);
         console.log(resultado);   
         return resultado;
 
@@ -128,15 +154,16 @@ document.addEventListener ('DOMContentLoaded', function(){ // el vento que tiene
 
         if(Object.values(email).includes('')){
             btnSubmit.classList.add('opacity-50');
-            btnSubmit.disabled = true;
             return
         }
         btnSubmit.classList.remove('opacity-50');
         btnSubmit.disabled = false;
     };
 
+
     function reset(){
         email.email = '';
+        email.CC = '';
         email.asunto = '';
         email.mensaje = '';
 
