@@ -85,7 +85,6 @@ document.addEventListener ('DOMContentLoaded', function(){ // el vento que tiene
             return;
         };
 
-
         limpiarAlerta(e.target.parentElement);
 
         // Asignar los valores.aa
