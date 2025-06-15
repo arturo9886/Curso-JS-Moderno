@@ -77,14 +77,13 @@ document.addEventListener ('DOMContentLoaded', function(){ // el vento que tiene
             comprobarEmail()
             return;
         }
-
         if (e.target.id ===  'email' && !validarEmail(e.target.value)){
             mostrarAlerta('El email no es valido', e.target.parentElement)
             email[e.target.name] = ''
             comprobarEmail();
             return;
-        };
-
+        }
+        
         limpiarAlerta(e.target.parentElement);
 
         // Asignar los valores.aa
