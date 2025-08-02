@@ -1,5 +1,4 @@
 //VARIABLES
-
 const marca = document.querySelector('#marca')
 const year = document.querySelector('#year')
 const minimo = document.querySelector('#minimo')
@@ -13,6 +12,7 @@ const resultado = document.querySelector('#resultado')
 const max = new Date().getFullYear();
 const min = max - 15;
 
+//Generar un objeto con la busqueda
 const datosBusqueda = {
     marca: '',
     year: '',
@@ -32,16 +32,17 @@ document.addEventListener('DOMContentLoaded',()=> {
     llenarSelect()
 })
 
+
 //Event listener para los selectores de busqueda.
 marca.addEventListener('change',function(e){
-
     datosBusqueda.marca = e.target.value;
-    console.log(datosBusqueda);
+    filtrarAuto()
 })
 
 year.addEventListener('change',function(e){
-    datosBusqueda.year = e.target.value;
+    datosBusqueda.year = parseInt(e.target.value);
     console.log(datosBusqueda);
+    filtrarAuto()
 })
 
 minimo.addEventListener('change',function(e){
@@ -72,22 +73,19 @@ color.addEventListener('change',function(e){
 //FUNCIONES
 function mostrarAutos(){
     autos.forEach(function(auto){
-        const autoHtml = document.createElement('p');
-        autoHtml.textContent = `
-        ${auto.marca}-
-        ${auto.modelo}-
-        ${auto.year}-
-        ${auto.precio}-
-        ${auto.puertas}-
-        ${auto.color}-
-        Transmicion: ${auto.transmision}
-
-        `
-        //insertar en el html
-        resultado.appendChild(autoHtml);
-
-    })
-};
+    const autoHTML = document.createElement('p')
+    autoHTML.textContent = 
+    `
+    ${auto.marca}-
+    ${auto.year}-
+    Precio: ${auto.precio}-
+    Puertas: ${auto.puertas}-
+    Transmisión: ${auto.transmision}-
+    Color: ${auto.color}-
+    `
+    resultado.appendChild(autoHTML);
+})
+}
 
 function llenarSelect(){
     for (let i=max; i>=min; i--){
@@ -96,4 +94,25 @@ function llenarSelect(){
         opcion.textContent = i
         year.appendChild(opcion); //agrega las opciones del a;o al select.
     }
+}
+
+//Funcio que filtra en base a la busqueda
+function filtrarAuto(){
+    const resultado = autos.filter(filtrarMarca).filter(filtrarYear)
+
+    console.log(resultado)
+}
+
+function filtrarMarca(auto){
+    if (datosBusqueda.marca){
+        return auto.marca === datosBusqueda.marca
+    }
+    return auto;
+} 
+
+function filtrarYear(auto){
+    if(datosBusqueda.year){
+        return auto.year === datosBusqueda.year
+    }
+    return auto
 }
