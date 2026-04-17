@@ -20,7 +20,7 @@ para poder agragar a session storage, se utiliza:
 
 sessionStorage.setItem('nombre','Arturito');
 
-// si le ponemos nueros, los colocara como strings, no podemos guardar numeros ni objetos, solo strings. 
+// si le ponemos numeros, los colocara como strings, no podemos guardar numeros ni objetos, solo strings. 
 
 const producto = {
     nombre: 'Monitor de 24"',
