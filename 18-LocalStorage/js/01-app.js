@@ -1,44 +1,39 @@
-//Agregar elementos a LocalStorage.
+// agregar elemntos al local storage. 
 
-//Agregar valor al localStorage
-localStorage.setItem('nombre', 'juan');
-/*                    llave     valor
-/localStorage se conforma de una llave y un vaor como los objetos, */
+localStorage.setItem("nombre","juan")
 
-/*
-Existe local storage y sesion storage
+//FACTS local storage pertenece a la api de javascript.
 
-en local storage, los datos se quedan mientras esten ahi escritos, idependientemente de lo que se haa a la pc, se cierre
-reinicie etc...
+// para encontrar los datos del loca storage nos vamos a inspeccionar y a application y en la seccion de storage esta local y session storage.
+//la diferencia de session estorage y local es que session son los datos de la sesion perse  local es la data local del sitio. 
 
-en sessionStorage lo que pasa es que los datos se pueden borrar si la pagina se cierra
-*/
+//Local storage e conforma de una llave y un valor.
 
-/*
-para poder agragar a session storage, se utiliza:
-*/
+localStorage.setItem("nombre","juan")
+//                    llave    valor
 
-sessionStorage.setItem('nombre','Arturito');
-
-// si le ponemos numeros, los colocara como strings, no podemos guardar numeros ni objetos, solo strings. 
+/* local storage solamente puede almacenar strings, pero hay manera de poder almacenar arreglos y objetos*/
 
 const producto = {
-    nombre: 'Monitor de 24"',
-    precio: '300'
-};
+    nombre:"Monitor de 20`",
+    precio:300
+}
 
+//para poder almacenar este objeto usamos JSON.Stringify.
 
-const productoString = JSON.stringify(producto);
+const productoString = JSON.stringify(producto)
 
-localStorage.setItem('producto', productoString);
+console.log(typeof productoString)
 
-/* lo que pasa aqui es que el objeto se transforma en un string usando JSON.stringify
-   esto se puede hacer siempre y cuando un formato que no se acepte en loca storage
-   se necesite insertar.  
-*/
+localStorage.setItem('producto',productoString)
 
-const meses = ['enero','febrero','marzo','abril'];
+// de la misma manera se puede hacer con los strings. 
 
-const mesesStrings = JSON.stringify(meses)
+const meses = ['enero','febrero','marzo'];
 
-localStorage.setItem("meses", mesesStrings)
+const mesesString = JSON.stringify(meses);
+
+localStorage.setItem('meses',mesesString);
+
+//Otra manera de hacerlo
+localStorage.setItem('meses', JSON.stringify(meses));

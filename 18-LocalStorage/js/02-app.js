@@ -1,24 +1,19 @@
-/* para poder tener un valor de local storage utilizamos:
-localStorage.getItem y decidimos lo que tenamos en storage.
-*/ 
+// obtener elementos del local storage.
 
-const nombre = localStorage.getItem('nombre')
-console.log(nombre)
-
-
-const productoJason = localStorage.getItem("producto");
-console.log(productoJason)
-
-/* para poder devolver los datos a su estado original, tenemos que usar.
-JSON.parse para poder convertirlo a su estado original.
+/* Para agregar elementos al local storage utilizamos
+    localStorage.setItem() 
 */
 
-const objetoNormal = JSON.parse(localStorage.getItem('producto'))
+/*Para obtener los elementos del local storage utilizamos
+    localStorage.getItem()
+*/
 
-console.log(objetoNormal)
+const nombre = localStorage.getItem('nombre')
 
+console.log(nombre)
 
+const productoJson = localStorage.getItem('producto')
+console.log(JSON.parse(productoJson))
 
-
-
-/* si no hay un objeto o llave en el lcoal storage nos dara null. */
+const meses = localStorage.getItem('meses')
+console.log(JSON.parse(meses))
