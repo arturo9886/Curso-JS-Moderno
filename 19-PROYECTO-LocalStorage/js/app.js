@@ -39,7 +39,7 @@ function agregarTweet(e){
 
     const tweetobj = {
         id:Date.now(),
-        texto:tweet  // en verciones recientes llave y valor pueden ser iguales ejm: tweet: tweet. Y si son iguales puede poner un solo texto y lo toma como los dos 
+        texto:tweet  // en versiones recientes llave y valor pueden ser iguales ejm: tweet: tweet. Y si son iguales puede poner un solo texto y lo toma como los dos 
     }                // valores en uno.
 
     // A;ADIR AL ARREGLO DE TWEETS.
